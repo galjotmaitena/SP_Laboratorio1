@@ -271,7 +271,7 @@ int Books_CompareByAutor(void* x, void* y)
 
 	if(x != NULL && y != NULL)
 	{
-		unLibro = (eLibro*)x;//unboxing de la variable
+		unLibro = (eLibro*)x;
 		otroLibro = (eLibro*)y;
 
 		if(Books_GetAutor(unLibro, unAutor) == 0 && Books_GetAutor(otroLibro, otroAutor) == 0)
@@ -334,24 +334,30 @@ void* Books_Map(void* unLibro)
 		{
 			if(idEditorial == 1 && Books_GetPrecio(auxiliarLibro, &precioLibro) == 0)
 			{
-				descuento = (precioLibro * 20) / 100;
-				precioConDescuento = precioLibro - descuento;
-
-				if(Books_SetPrecio(auxiliarLibro, precioConDescuento) == 0)
+				if(precioLibro >= 300)
 				{
-					retorno = auxiliarLibro;
+					descuento = (precioLibro * 20) / 100;
+					precioConDescuento = precioLibro - descuento;
+
+					if(Books_SetPrecio(auxiliarLibro, precioConDescuento) == 0)
+					{
+						retorno = auxiliarLibro;
+					}
 				}
 			}
 			else
 			{
 				if(idEditorial == 2 && Books_GetPrecio(auxiliarLibro, &precioLibro) == 0)
 				{
-					descuento = (precioLibro * 10) / 100;
-					precioConDescuento = precioLibro - descuento;
-
-					if(Books_SetPrecio(auxiliarLibro, precioConDescuento) == 0)
+					if(precioLibro <= 300)
 					{
-						retorno = auxiliarLibro;
+						descuento = (precioLibro * 10) / 100;
+						precioConDescuento = precioLibro - descuento;
+
+						if(Books_SetPrecio(auxiliarLibro, precioConDescuento) == 0)
+						{
+							retorno = auxiliarLibro;
+						}
 					}
 				}
 			}
