@@ -349,7 +349,7 @@ void* Books_Map(void* unLibro)
 			{
 				if(idEditorial == 2 && Books_GetPrecio(auxiliarLibro, &precioLibro) == 0)
 				{
-					if(precioLibro <= 300)
+					if(precioLibro <= 200)
 					{
 						descuento = (precioLibro * 10) / 100;
 						precioConDescuento = precioLibro - descuento;
