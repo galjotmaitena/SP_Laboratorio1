@@ -683,6 +683,7 @@ LinkedList* ll_map(LinkedList* this, void* (pFunc)(void*))
 {
     void* pElement;
     LinkedList* listaMapeada;
+    int i;
 
     listaMapeada = NULL;
 
@@ -690,16 +691,19 @@ LinkedList* ll_map(LinkedList* this, void* (pFunc)(void*))
     {
     	listaMapeada = ll_newLinkedList();
 
-        for (int i = 0; i < ll_len(this); i++)
-        {
-            pElement = ll_get(this, i);
-            pElement = pFunc(pElement);
+    	if(listaMapeada != NULL)
+    	{
+    		for (i = 0; i < ll_len(this); i++)
+    		{
+    			pElement = ll_get(this, i);
+    		    pElement = pFunc(pElement);
 
-            if(pElement!=NULL)
-            {
-                ll_add(listaMapeada, pElement);
-            }
-        }
+    		    if(pElement!=NULL)
+    		    {
+    		        ll_add(listaMapeada, pElement);
+    		    }
+    		}
+    	}
     }
 
     return listaMapeada;
